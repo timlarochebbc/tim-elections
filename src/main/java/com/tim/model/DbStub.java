@@ -1,5 +1,9 @@
 package com.tim.model;
 
+import java.util.Map;
+
 public interface DbStub {
-    public ConstituencyResults[] getAll();
+
+    //Returns total amount of voters.
+    public Map<Integer, Result[]> getAll();
 }

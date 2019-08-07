@@ -16,7 +16,7 @@ public class ConstituencyResults {
         this.constituencyResult = results;
     }
 
-    public ConstituencyResult[] getConstituencyResult() {
+    public ConstituencyResult[] getAllConstituencyResult() {
         return constituencyResult;
     }
 
