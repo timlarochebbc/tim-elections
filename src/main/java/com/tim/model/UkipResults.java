@@ -5,7 +5,7 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 
 @Entity
-public class UkipResults {
+public class UkipResults implements Result {
     @Id
     private Integer id;
     private String constituencyName;

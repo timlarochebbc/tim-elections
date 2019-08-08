@@ -11,8 +11,8 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 @Configuration
 @EnableAutoConfiguration
 @EntityScan(basePackages = {"com.tim.model"} )
-@EnableJpaRepositories("com.tim.model")
-@ComponentScan(basePackages = {"com.tim", "com.tim.model"})
+@EnableJpaRepositories({"com.tim.model", "com.tim.repository"})
+@ComponentScan(basePackages = {"com.tim"})
 public class App {
     public static void main(String[] args){
         SpringApplication.run(App.class, args);

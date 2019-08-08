@@ -5,9 +5,37 @@
 	<script   src="https://code.jquery.com/jquery-3.4.1.min.js"   integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="   crossorigin="anonymous"></script>
 </head>
 <body>
+	<table id="results">
+		<tr>
+			<th>Constituency ID</th>
+			<th>Constituency Name</th>
+			<th>Votes</th>
+			<th>Share</th>
+		</tr>
+	</table>
 	<script type="text/javascript">
-		$.get("http://localhost:8080/", function(data){
+		$.get("http://localhost:8080/labresults", function(data){
 			console.log(data);
+			for(var x in data){
+				console.log(x.id);
+			}
+			$("#results").html("\t\t<tr>\n" +
+					"\t\t\t<th>Constituency ID</th>\n" +
+					"\t\t\t<th>Constituency Name</th>\n" +
+					"\t\t\t<th>Votes</th>\n" +
+					"\t\t\t<th>Share</th>\n" +
+					"\t\t</tr>")
+			data.forEach(function(x){
+				$("#results").append("<tr><td>" +
+						x.id +
+						"</td><td>" +
+						x.constituencyName +
+						"</td><td>" +
+						x.votes +
+						"</td><td>" +
+						x.share +
+						"</td></tr>")
+			});
 		})
 	</script>
 </body>

@@ -1,12 +1,16 @@
 package com.tim.app;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.dataformat.xml.XmlMapper;
 import com.tim.model.*;
+import com.tim.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -19,18 +23,38 @@ import java.util.Map;
 @RestController
 public class AppController {
     XmlMapper mapper;
-    @Autowired private LabResultsRepo labResultsRepo;
-    @Autowired private ConResultsRepo conResultsRepo;
-    @Autowired private LdResultsRepo ldResultsRepo;
-    @Autowired private PcResultsRepo pcResultsRepo;
-    @Autowired private OthResultsRepo othResultsRepo;
-    @Autowired private GrnResultsRepo grnResultsRepo;
-    @Autowired private UkipResultsRepo ukipResultsRepo;
+//    @Autowired private LabResultsRepo labResultsRepo;
+//    @Autowired private ConResultsRepo conResultsRepo;
+//    @Autowired private LdResultsRepo ldResultsRepo;
+//    @Autowired private PcResultsRepo pcResultsRepo;
+//    @Autowired private OthResultsRepo othResultsRepo;
+//    @Autowired private GrnResultsRepo grnResultsRepo;
+//    @Autowired private UkipResultsRepo ukipResultsRepo;
+
+    private LabResultsRepo labResultsRepo;
+    private ConResultsRepo conResultsRepo;
+    private LdResultsRepo ldResultsRepo;
+    private PcResultsRepo pcResultsRepo;
+    private OthResultsRepo othResultsRepo;
+    private GrnResultsRepo grnResultsRepo;
+    private UkipResultsRepo ukipResultsRepo;
 
     public AppController(){
         mapper = new XmlMapper();
     }
 
+    @Autowired
+    public AppController(LabResultsRepo labResultsRepo, ConResultsRepo conResultsRepo, LdResultsRepo ldResultsRepo, PcResultsRepo pcResultsRepo, OthResultsRepo othResultsRepo, GrnResultsRepo grnResultsRepo, UkipResultsRepo ukipResultsRepo) {
+        this.labResultsRepo = labResultsRepo;
+        this.conResultsRepo = conResultsRepo;
+        this.ldResultsRepo = ldResultsRepo;
+        this.pcResultsRepo = pcResultsRepo;
+        this.othResultsRepo = othResultsRepo;
+        this.grnResultsRepo = grnResultsRepo;
+        this.ukipResultsRepo = ukipResultsRepo;
+
+        this.mapper = new XmlMapper();
+    }
 
     //Endpoint for posting .xml to the database
     @PostMapping("/newresult")
@@ -90,8 +114,8 @@ public class AppController {
     }
 
     @RequestMapping("/labresults")
-    public Iterable<LabResults> labResults(){
-        return labResultsRepo.findAll();
+    public ResponseEntity<Iterable<LabResults>> labResults(){
+        return new ResponseEntity<>(labResultsRepo.findAll(), HttpStatus.OK);
     }
 
     @RequestMapping("/conresults")
@@ -124,13 +148,20 @@ public class AppController {
         return ukipResultsRepo.findAll();
     }
 
-    @PostMapping("/testpost")
-    public void testpost(){
-        Map<String, Integer> x = new HashMap<>();
-        x.put("LAB", 5);
-        Map<String, Double> y = new HashMap<>();
-        y.put("LAB", 22.0);
-        labResultsRepo.save(new LabResults(1, "Sussex",1,2.0));
-    }
 
+    @RequestMapping("/results/{id}")
+    public ResponseEntity<String> resultsForConstituency(@PathVariable("id") int id) throws JsonProcessingException {
+        Map<String, Result> json = new HashMap<>();
+
+        //TODO: Make these check the optional first.
+        json.put("CON", conResultsRepo.findById(id).get());
+        json.put("LAB", labResultsRepo.findById(id).get());
+        json.put("GRN", grnResultsRepo.findById(id).get());
+        json.put("LD", ldResultsRepo.findById(id).get());
+        json.put("OTH", othResultsRepo.findById(id).get());
+        json.put("UKIP", ukipResultsRepo.findById(id).get());
+        json.put("PC", pcResultsRepo.findById(id).get());
+        ObjectMapper objectMapper = new ObjectMapper();
+        return new ResponseEntity<>(objectMapper.writeValueAsString(json), HttpStatus.OK);
+    }
 }

@@ -5,7 +5,7 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 
 @Entity
-public class OthResults {
+public class OthResults implements Result {
     @Id
     private Integer id;
     private String constituencyName;
