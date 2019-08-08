@@ -4,23 +4,23 @@ import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlElementWrapper;
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlRootElement;
 
 @JacksonXmlRootElement(localName = "constituencyResults")
-public class ConstituencyResults {
+public class ConstituencyResultsRootModel {
 
     @JacksonXmlElementWrapper(localName = "constituencyResult", useWrapping = false)
-    private ConstituencyResult[] constituencyResult;
+    private ConstituencyResultModel constituencyResult;
 
-    public ConstituencyResults(){
+    public ConstituencyResultsRootModel(){
     }
 
-    public ConstituencyResults(ConstituencyResult[] results){
+    public ConstituencyResultsRootModel(ConstituencyResultModel results){
         this.constituencyResult = results;
     }
 
-    public ConstituencyResult[] getAllConstituencyResult() {
+    public ConstituencyResultModel getAllConstituencyResult() {
         return constituencyResult;
     }
 
-    public void setConstituencyResult(ConstituencyResult[] constituencyResult) {
+    public void setConstituencyResult(ConstituencyResultModel constituencyResult) {
         this.constituencyResult = constituencyResult;
     }
 }

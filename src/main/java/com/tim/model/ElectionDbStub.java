@@ -4,18 +4,18 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class ElectionDbStub implements DbStub {
-    private static Map<Integer, Result[]> resultsById;
+    private static Map<Integer, ResultModel[]> resultsById;
 
     static{
-        resultsById = new HashMap<Integer, Result[]>();
+        resultsById = new HashMap<Integer, ResultModel[]>();
     }
 
-    public Map<Integer, Result[]> getAll() {
+    public Map<Integer, ResultModel[]> getAll() {
         return resultsById;
     }
 
 
-    public static void addNewResult(int id, Result[] results){
+    public static void addNewResult(int id, ResultModel[] results){
         resultsById.put(id, results);
     }
 }

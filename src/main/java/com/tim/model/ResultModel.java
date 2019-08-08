@@ -4,7 +4,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonValue;
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty;
 
-public class Result {
+public class ResultModel {
 
     /*
     Does not work. https://github.com/FasterXML/jackson-dataformat-xml/issues/121
@@ -38,7 +38,7 @@ public class Result {
     @JacksonXmlProperty(localName = "share")
     private double share;
 
-    public Result(){}
+    public ResultModel(){}
 
     public String getPartyCode() {
         return partyCode;

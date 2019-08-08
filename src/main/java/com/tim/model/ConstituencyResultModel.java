@@ -3,7 +3,7 @@ package com.tim.model;
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlElementWrapper;
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty;
 
-public class ConstituencyResult {
+public class ConstituencyResultModel {
 
     @JacksonXmlProperty(localName = "seqNo", isAttribute = true)
     private int seqNo;
@@ -15,11 +15,11 @@ public class ConstituencyResult {
     private String constituencyName;
 
     @JacksonXmlElementWrapper(localName = "results", useWrapping = true)
-    private Result[] results;
+    private ResultModel[] results;
 
-    public ConstituencyResult(){}
+    public ConstituencyResultModel(){}
 
-    public ConstituencyResult(int consituencyId, String constituencyName, Result[] results){
+    public ConstituencyResultModel(int consituencyId, String constituencyName, ResultModel[] results){
         this.consituencyId = consituencyId;
         this.constituencyName = constituencyName;
         this.results = results;
@@ -41,11 +41,11 @@ public class ConstituencyResult {
         this.constituencyName = constituencyName;
     }
 
-    public Result[] getResults() {
+    public ResultModel[] getResults() {
         return results;
     }
 
-    public void setResults(Result[] results) {
+    public void setResults(ResultModel[] results) {
         this.results = results;
     }
 
