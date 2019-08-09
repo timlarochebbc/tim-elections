@@ -5,7 +5,7 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 
 @Entity
-public class UkipResults implements Result {
+public class UkipResults extends Result {
     @Id
     private Integer id;
     private String constituencyName;
@@ -22,34 +22,42 @@ public class UkipResults implements Result {
         this.share = share;
     }
 
+    @Override
     public Integer getId() {
         return id;
     }
 
+    @Override
     public void setId(Integer id) {
         this.id = id;
     }
 
+    @Override
     public String getConstituencyName() {
         return constituencyName;
     }
 
+    @Override
     public void setConstituencyName(String constituencyName) {
         this.constituencyName = constituencyName;
     }
 
+    @Override
     public Integer getVotes() {
         return votes;
     }
 
+    @Override
     public void setVotes(Integer votes) {
         this.votes = votes;
     }
 
+    @Override
     public Double getShare() {
         return share;
     }
 
+    @Override
     public void setShare(Double share) {
         this.share = share;
     }

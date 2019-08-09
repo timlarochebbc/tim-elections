@@ -2,21 +2,55 @@ package com.tim.model;
 
 import org.springframework.stereotype.Service;
 
+import javax.persistence.Id;
+
 @Service
-public interface Result {
-    Integer getId();
+public class Result {
+    @Id
+    private Integer id;
+    private String constituencyName;
 
-    void setId(Integer id);
+    private Integer votes;
+    private Double share;
 
-    String getConstituencyName();
+    public Result(){}
 
-    void setConstituencyName(String constituencyName);
+    public Result(Integer id, String constituencyName, Integer votes, Double share) {
+        this.id = id;
+        this.constituencyName = constituencyName;
+        this.votes = votes;
+        this.share = share;
+    }
 
-    Integer getVotes();
+    public Integer getId() {
+        return id;
+    }
 
-    void setVotes(Integer votes);
+    public void setId(Integer id) {
+        this.id = id;
+    }
 
-    Double getShare();
+    public String getConstituencyName() {
+        return constituencyName;
+    }
 
-    void setShare(Double share);
+    public void setConstituencyName(String constituencyName) {
+        this.constituencyName = constituencyName;
+    }
+
+    public Integer getVotes() {
+        return votes;
+    }
+
+    public void setVotes(Integer votes) {
+        this.votes = votes;
+    }
+
+    public Double getShare() {
+        return share;
+    }
+
+    public void setShare(Double share) {
+        this.share = share;
+    }
 }

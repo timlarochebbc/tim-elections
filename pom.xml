@@ -65,6 +65,18 @@
             <version>2.1.6.RELEASE</version>
             <optional>true</optional>
         </dependency>
+        <dependency>
+            <groupId>io.cucumber</groupId>
+            <artifactId>cucumber-junit</artifactId>
+            <version>4.7.1</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>io.cucumber</groupId>
+            <artifactId>cucumber-java</artifactId>
+            <version>4.7.1</version>
+            <scope>test</scope>
+        </dependency>
     </dependencies>
 
     <build>

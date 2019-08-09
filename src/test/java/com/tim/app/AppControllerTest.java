@@ -87,13 +87,14 @@ public class AppControllerTest {
 
     @Test
     public void getConstituencyResultsByIdTest() throws JsonProcessingException {
-        given(conResultsRepo.findById(anyInt()).get()).willReturn(new ConResults());
-        given(labResultsRepo.findById(anyInt()).get()).willReturn(new LabResults());
-        given(grnResultsRepo.findById(anyInt()).get()).willReturn(new GrnResults());
-        given(ldResultsRepo.findById(anyInt()).get()).willReturn(new LdResults());
-        given(othResultsRepo.findById(anyInt()).get()).willReturn(new OthResults());
-        given(ukipResultsRepo.findById(anyInt()).get()).willReturn(new UkipResults());
-        given(pcResultsRepo.findById(anyInt()).get()).willReturn(new PcResults());
+        Optional<Result> result = Optional.of(new ConResults());
+        //given(conResultsRepo.findById(anyInt())).willReturn(result);
+//        given(labResultsRepo.findById(anyInt()).get()).willReturn(new LabResults());
+//        given(grnResultsRepo.findById(anyInt()).get()).willReturn(new GrnResults());
+//        given(ldResultsRepo.findById(anyInt()).get()).willReturn(new LdResults());
+//        given(othResultsRepo.findById(anyInt()).get()).willReturn(new OthResults());
+//        given(ukipResultsRepo.findById(anyInt()).get()).willReturn(new UkipResults());
+//        given(pcResultsRepo.findById(anyInt()).get()).willReturn(new PcResults());
 
         ResponseEntity<String> response = underTest.resultsForConstituency(2);
         //If Json in undertest.ResultsForConstituency successfully serialises, no error

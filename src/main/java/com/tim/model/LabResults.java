@@ -4,7 +4,7 @@ package com.tim.model;
 import javax.persistence.*;
 
 @Entity
-public class LabResults implements Result {
+public class LabResults extends Result {
     @Id
     private Integer id;
     private String constituencyName;

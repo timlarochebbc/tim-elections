@@ -148,6 +148,24 @@ public class AppController {
         return ukipResultsRepo.findAll();
     }
 
+    //Dangerous!
+    @RequestMapping("/cleardb/{password}")
+    public ResponseEntity<String> clearDb(@PathVariable("password") String password){
+        if(password.equals("password123")){
+            System.out.println("omg");
+            conResultsRepo.deleteAll();
+            labResultsRepo.deleteAll();
+            grnResultsRepo.deleteAll();
+            ldResultsRepo.deleteAll();
+            othResultsRepo.deleteAll();
+            ukipResultsRepo.deleteAll();
+            pcResultsRepo.deleteAll();
+            return new ResponseEntity<>("Wiped.", HttpStatus.OK);
+        }
+        else{
+            return new ResponseEntity<>("Wrong password.", HttpStatus.BAD_REQUEST);
+        }
+    }
 
     @RequestMapping("/results/{id}")
     public ResponseEntity<String> resultsForConstituency(@PathVariable("id") int id) throws JsonProcessingException {
